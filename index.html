@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="et">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Business Consulting OU — Finantsnõustamine ja investeerimislahendused</title>
+  <meta name="description" content="Business Consulting OU — finantsnõustamine, investeerimisstrateegiad, väärtpaberid ja riskijuhtimine Tallinnas ja rahvusvaheliselt." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#0b0f12; --card:#12181d; --muted:#a7b1bb; --accent:#1fe0c8; --accent-2:#59f; --line:#26313a;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;color:#e7edf3;background:var(--bg)}
+    a{color:inherit;text-decoration:none}
+    .container{width:min(1200px, 92%);margin-inline:auto}
+    .btn{display:inline-flex;align-items:center;gap:.5rem;padding:.9rem 1.3rem;border-radius:14px;background:linear-gradient(135deg,var(--accent),var(--accent-2));color:#061217;font-weight:600;border:none}
+    .btn.ghost{background:transparent;color:#e7edf3;border:1px solid #2c3a45}
+    header.nav{position:fixed;inset-inline:0;top:0;z-index:50;background:linear-gradient(180deg,rgba(7,11,14,.85),rgba(7,11,14,0));backdrop-filter:blur(6px)}
+    .nav-inner{display:flex;align-items:center;justify-content:space-between;padding:16px 0}
+    .nav-links{display:flex;gap:24px;font-weight:500}
+    .nav-links a{opacity:.9}
+    .nav-links a:hover{opacity:1;color:var(--accent)}
+
+    /* HERO */
+    .hero{position:relative;min-height:88vh;display:grid;place-items:end;isolation:isolate}
+    .hero::before {
+  content:"";
+  position:absolute;
+  inset:0;
+  background:url('main1.jpg') center/cover no-repeat;
+  filter:brightness(.55) saturate(1.05);
+}
+    .hero::after{content:"";position:absolute;inset:0;background:radial-gradient(100% 60% at 30% 40%, rgba(31,224,200,.25), transparent 60%),linear-gradient(180deg,transparent 60%, rgba(7,11,14,.9) 95%)}
+    .hero-content{position:relative;z-index:1;padding:9rem 0 5rem}
+    .eyebrow{letter-spacing:.2em;text-transform:uppercase;color:var(--accent);font-weight:700;font-size:.8rem}
+    h1{font-size:clamp(2rem,5vw,3.75rem);line-height:1.06;margin:.5rem 0 1rem}
+    .hero-meta{display:flex;gap:24px;flex-wrap:wrap;color:var(--muted)}
+    .hero-quick{display:grid;grid-template-columns:repeat(3,minmax(140px,1fr));gap:18px;margin-top:22px}
+    .hero-quick .q{background:rgba(17,22,27,.7);border:1px solid var(--line);padding:14px;border-radius:14px}
+    .hero-quick .q b{display:block;color:#fff}
+
+    /* SECTION */
+    section{padding:80px 0;border-top:1px solid var(--line)}
+    section:first-of-type{border-top:none}
+    .section-head{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;margin-bottom:28px}
+    .section-head h2{font-size:clamp(1.6rem,3.2vw,2.2rem);margin:0}
+    .sub{color:var(--muted)}
+
+    /* CARDS */
+    .grid{display:grid;gap:20px}
+    .cols-3{grid-template-columns:repeat(3,minmax(0,1fr))}
+    .cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}
+    @media (max-width:900px){.cols-3{grid-template-columns:1fr 1fr}.nav-links{display:none}}
+    @media (max-width:640px){.cols-3,.cols-2{grid-template-columns:1fr}}
+
+    .card{background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden}
+    .card .img{height:180px;background:#0e1419;overflow:hidden}
+    .card .img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s ease}
+    .card:hover .img img{transform:scale(1.06)}
+    .card .body{padding:18px}
+    .pill{display:inline-block;padding:6px 10px;border:1px solid #2b3943;border-radius:999px;color:var(--muted);font-size:.82rem}
+
+    /* FEATURE ROWS */
+    .feature{display:grid;grid-template-columns:1.1fr .9fr;gap:36px;align-items:center}
+    .feature.reverse{grid-template-columns:.9fr 1.1fr}
+    .feature .visual{border-radius:16px;overflow:hidden;border:1px solid var(--line)}
+    .feature .visual img{width:100%;height:auto;display:block}
+
+    /* TIMELINE */
+    .timeline{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+    .step{background:var(--card);border:1px solid var(--line);padding:18px;border-radius:16px;position:relative}
+    .step h4{margin:0 0 6px}
+    .step::after{content:"→";position:absolute;right:-10px;top:50%;translate:0 -50%;opacity:.6}
+    .timeline .step:last-child::after{content:""}
+    @media (max-width:900px){.timeline{grid-template-columns:1fr 1fr}.step::after{display:none}}
+    @media (max-width:560px){.timeline{grid-template-columns:1fr}}
+
+    /* FORM */
+    form{display:grid;gap:14px}
+    input,textarea{width:100%;background:#0e1418;border:1px solid #2b3943;border-radius:12px;color:#e8eef4;padding:12px 14px;font:inherit}
+    textarea{min-height:130px;resize:vertical}
+    .notice{display:none;margin-top:12px;background:#0f1a14;border:1px solid #1c3b2e;color:#bff6da;padding:12px 14px;border-radius:12px}
+    .footer{padding:36px 0;color:var(--muted);border-top:1px solid var(--line);text-align:center}
+  </style>
+</head>
+<body>
+  <!-- NAV -->
+  <header class="nav">
+    <div class="container nav-inner">
+      <a href="#home" class="logo" style="font-weight:800;letter-spacing:.04em">Business <span style="color:var(--accent)">Consulting</span> OU</a>
+      <nav class="nav-links">
+        <a href="#about">Meist</a>
+        <a href="#services">Teenused</a>
+        <a href="#reasons">Miks valida meid?</a>
+        <a href="#process">Meie protsess</a>
+        <a href="#contact">Kontaktivorm</a>
+        <a href="#contacts">Kontaktid</a>
+      </nav>
+      <a class="btn" href="#contact">Võta ühendust</a>
+    </div>
+  </header>
+
+  <!-- 1. HERO -->
+  <section id="home" class="hero">
+    <div class="container hero-content">
+      <div class="eyebrow">Finants & Invest</div>
+      <h1>Kapitali kasvuks. Strateegiad kindlusega.</h1>
+      <p class="sub" style="max-width:680px">Pakume kõrgetasemelist finantsnõustamist, investeerimisstrateegiaid ja riskijuhtimist. Fookus: väärtpaberid, toormelepingud ning muud finantsinstrumendid — läbipaistvalt ja andmepõhiselt.</p>
+      <div class="hero-meta" style="margin-top:18px">
+        <a class="btn" href="#services">Vaata teenuseid</a>
+        <a class="btn ghost" href="#about">Rohkem meist</a>
+      </div>
+      <div class="hero-quick">
+        <div class="q"><b>12+ a</b><span class="sub">kogemust turgudel</span></div>
+        <div class="q"><b>EU & USA</b><span class="sub">regioonide fookus</span></div>
+        <div class="q"><b>360°</b><span class="sub">riskijuhtimine</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. ABOUT -->
+  <section id="about">
+    <div class="container">
+      <div class="section-head">
+        <h2>Kes me oleme</h2>
+        <p class="sub">Business Consulting OU — sõltumatu finantsnõustaja Tallinnast.</p>
+      </div>
+      <div class="feature">
+        <div>
+          <p>Loome kliendile selge investeerimisraamistiku: eesmärgid, riskiprofiil ja kapitali jaotus. Meie meeskond ühendab kvantitatiivse analüüsi ja turukogemuse, et pakkuda tasakaalu tootluse ja riski vahel.</p>
+          <ul class="sub" style="margin:14px 0 0;line-height:1.9">
+            <li>Regulatiivne kooskõla ja due diligence igas etapis</li>
+            <li>Portfellihalduse ja riskimõõdikute iganädalane raport</li>
+            <li>Struktureeritud lahendused: väärtpaberid, tuletisinstrumendid, toormed</li>
+          </ul>
+        </div>
+        <div class="visual"><img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=1800&auto=format&fit=crop" alt="Meeskond analüüsimas turuandmeid"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. SERVICES (kaardid sarnased galerii stiilis) -->
+  <section id="services">
+    <div class="container">
+      <div class="section-head">
+        <h2>Teenused</h2>
+        <p class="sub">Valik lahendusi kapitali kasvatamiseks ja kaitsmiseks.</p>
+      </div>
+      <div class="grid cols-3">
+       <article class="card">
+  <div class="img">
+    <img src="main2.jpg" alt="Portfellistrateegia"/>
+  </div>
+  <div class="body">
+    <span class="pill">Portfell</span>
+    <h3 style="margin:10px 0 6px">Portfellistrateegia & jaotus</h3>
+    <p class="sub">Isikupärane varaklasside jaotus (aktsiad, võlakirjad, toormed) vastavalt riskiprofiilile.</p>
+  </div>
+</article>
+        <article class="card">
+  <div class="img">
+    <img src="main4.jpg" alt="Riskijuhtimine"/>
+  </div>
+  <div class="body">
+    <span class="pill">Risk</span>
+    <h3 style="margin:10px 0 6px">Riskijuhtimine & hedžimine</h3>
+    <p class="sub">Vaadeldav VaR/CVaR raamistik ja tuletisinstrumentide kasutus kaitseks.</p>
+  </div>
+</article>
+        <article class="card">
+          <div class="img"><img src="https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?q=80&w=1800&auto=format&fit=crop" alt="Väärtpaberid"/></div>
+          <div class="body">
+            <span class="pill">Turg</span>
+            <h3 style="margin:10px 0 6px">Väärtpaberite analüüs</h3>
+            <p class="sub">Fundamentaalne ja kvantanalüüs; signaalid, trendid ja väärtusmudelid.</p>
+          </div>
+        </article>
+        <article class="card">
+          <div class="img"><img src="https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?q=80&w=1800&auto=format&fit=crop" alt="Toormelepingud"/></div>
+          <div class="body">
+            <span class="pill">Toormed</span>
+            <h3 style="margin:10px 0 6px">Toormelepingud</h3>
+            <p class="sub">Strateegiad energiakandjate ja metallide hinnariski juhtimiseks.</p>
+          </div>
+        </article>
+        <article class="card">
+          <div class="img"><img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=1800&auto=format&fit=crop" alt="Nõustamine"/></div>
+          <div class="body">
+            <span class="pill">Nõustamine</span>
+            <h3 style="margin:10px 0 6px">Regulatiivne nõustamine</h3>
+            <p class="sub">KYC/AML, vastavusnõuded ja protseduuride ülesehitus.</p>
+          </div>
+        </article>
+        <article class="card">
+          <div class="img"><img src="https://images.unsplash.com/photo-1543286386-2e659306cd6c?q=80&w=1800&auto=format&fit=crop" alt="Raportid"/></div>
+          <div class="body">
+            <span class="pill">Raport</span>
+            <h3 style="margin:10px 0 6px">Jooksev aruandlus</h3>
+            <p class="sub">Iganädalased kokkuvõtted tootlusest, riskidest ja muutustest.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. WHY CHOOSE US -->
+  <section id="reasons">
+    <div class="container">
+      <div class="section-head">
+        <h2>Miks valida meid?</h2>
+        <p class="sub">Kolm põhjust, mis loovad püsiva väärtuse.</p>
+      </div>
+      <div class="grid cols-3">
+        <div class="card"><div class="body">
+          <h3>Andmepõhine otsustatus</h3>
+          <p class="sub">Kasutame kvantmudeleid ja põhjalikke riskimõõdikuid, et mitte toetuda oletustele.</p>
+        </div></div>
+        <div class="card"><div class="body">
+          <h3>Läbipaistev koostöö</h3>
+          <p class="sub">Selged tasustruktuurid, aruanded ja dokumenteeritud protsess igal sammul.</p>
+        </div></div>
+        <div class="card"><div class="body">
+          <h3>Regulatiivne distsipliin</h3>
+          <p class="sub">Keskendume vastavusele ja turvalisusele nii Eestis kui ka rahvusvaheliselt.</p>
+        </div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. PROCESS ("nooled") -->
+  <section id="process">
+    <div class="container">
+      <div class="section-head">
+        <h2>Meie protsess</h2>
+        <p class="sub">Selge, etapiviisiline lähenemine — alates eesmärkidest kuni järelevalveni.</p>
+      </div>
+      <div class="timeline">
+        <div class="step"><h4>01. Kaardistus</h4><p class="sub">Eesmärgid, horisont, riskitaluvus.</p></div>
+        <div class="step"><h4>02. Strateegia</h4><p class="sub">Varaklasside jaotus ja taktikalised ideed.</p></div>
+        <div class="step"><h4>03. Teostus</h4><p class="sub">Tellimused, hedžimine, regulatiivne kontroll.</p></div>
+        <div class="step"><h4>04. Seire</h4><p class="sub">Raportid, tagasiside, vajadusel ümberkaalumine.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. CONTACT FORM -->
+  <section id="contact">
+    <div class="container">
+      <div class="section-head">
+        <h2>Võtke meiega ühendust</h2>
+        <p class="sub">Kirjeldage lühidalt oma eesmärki — vastame esimesel võimalusel.</p>
+      </div>
+      <div class="grid cols-2">
+        <form id="leadForm" autocomplete="on">
+          <input type="text" name="name" placeholder="Teie nimi" required>
+          <input type="email" name="email" placeholder="Teie e-post" required>
+          <input type="text" name="topic" placeholder="Teema (nt portfell, risk, toormed)">
+          <textarea name="message" placeholder="Sõnum"></textarea>
+          <button class="btn" type="submit">Saada päring</button>
+          <div id="ok" class="notice">Aitäh! Teie sõnum on saadetud — võtame peagi ühendust.</div>
+        </form>
+        <div class="card">
+          <div class="img"><img src="https://images.unsplash.com/photo-1474631245212-32dc3c8310c6?q=80&w=1800&auto=format&fit=crop" alt="Kontori visuaal"></div>
+          <div class="body">
+            <h3>Koostöö alustamine</h3>
+            <p class="sub">Vastame teile esimesel võimalusel, tavaliselt kahe tööpäeva jooksul.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. CONTACTS (ainult aadress + e-post) -->
+  <section id="contacts">
+    <div class="container">
+      <div class="section-head">
+        <h2>Kontaktid</h2>
+        <p class="sub">Alustame dialoogi ja leiame sobiva lahenduse.</p>
+      </div>
+      <div class="grid cols-2">
+        <div class="card"><div class="body">
+          <h3>Aadress</h3>
+          <p>Vabaõhukooli tee 9-17, 12015 Tallinn</p>
+        </div></div>
+        <div class="card"><div class="body">
+          <h3>E-post</h3>
+          <p><a href="mailto:priit@businessconsultingest.org">priit@businessconsultingest.org</a></p>
+        </div></div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">© <span id="y"></span> Business Consulting OU. Kõik õigused kaitstud.</div>
+  </footer>
+
+  <script>
+    document.getElementById('y').textContent = new Date().getFullYear();
+    document.getElementById('leadForm').addEventListener('submit', function(e){
+      e.preventDefault();
+      const ok = document.getElementById('ok');
+      ok.style.display = 'block';
+      this.reset();
+      ok.scrollIntoView({behavior:'smooth', block:'center'});
+    });
+  </script>
+</body>
+</html>
